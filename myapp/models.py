@@ -5,9 +5,13 @@ class Event(models.Model):
     # 主键：事件唯一标识符
     event_id = models.AutoField(primary_key=True)
     
-    # 子事件ID，用于构建树状结构
-    child_event_id = models.IntegerField(null=True, blank=True)
-    
+    parent_event_id = models.ForeignKey(
+        'self',  # 指向自身的外键
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,  # 父事件删除时，子事件一并删除
+        related_name='child_events'  # 方便通过父事件查询子事件
+    )    
     # 四象限分类
     QUADRANT_CHOICES = [
         ('IU', '重要紧急'),
