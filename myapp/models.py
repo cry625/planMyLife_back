@@ -15,11 +15,11 @@ class Event(models.Model):
     # 四象限分类
     QUADRANT_CHOICES = [
         ('IU', '重要紧急'),
-        ('IN', '重要不紧急'),
+        ('INU', '重要不紧急'),
         ('NU', '不重要紧急'),
-        ('NN', '不重要不紧急'),
+        ('NNU', '不重要不紧急'),
     ]
-    quadrant = models.CharField(max_length=2, choices=QUADRANT_CHOICES)
+    quadrant = models.CharField(max_length=3, choices=QUADRANT_CHOICES)
     
     # 分类
     CATEGORY_CHOICES = [
